@@ -2,7 +2,7 @@ import * as THREE from "three";
 import "./style.css";
 
 /* =========================================================
-   TECHDECOR — V4 VISUAL FIX
+   TECHDECOR — V5 REAL PRODUCT IMAGES
    ========================================================= */
 
 const products = [
@@ -12,6 +12,8 @@ const products = [
     name: "QUANTUM X1",
     category: "AUDIO",
     price: 12999,
+    image:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=85",
     description:
       "Immersive wireless headphones engineered for premium sound, adaptive noise cancellation and all-day performance.",
     features: [
@@ -27,6 +29,8 @@ const products = [
     name: "TITAN K2",
     category: "KEYBOARD",
     price: 7499,
+    image:
+      "https://images.unsplash.com/photo-1634306625640-04ac053e544b?auto=format&fit=crop&w=1200&q=85",
     description:
       "Precision mechanical keyboard with responsive switches, RGB illumination and a premium aluminum-inspired body.",
     features: [
@@ -42,6 +46,8 @@ const products = [
     name: "VECTOR M3",
     category: "MOUSE",
     price: 4999,
+    image:
+      "https://images.unsplash.com/photo-1707592691247-5c3a1c7ba0e3?auto=format&fit=crop&w=1200&q=85",
     description:
       "High precision wireless mouse with ergonomic contours, fast response and an advanced optical sensor.",
     features: [
@@ -61,346 +67,308 @@ const products = [
 document.body.innerHTML = `
 <div class="site">
 
-  <header class="navbar">
+<header class="navbar">
 
-    <a href="#home" class="brand">
-      <span class="brand-mark">T</span>
-      <span>TECH<span>DECOR</span></span>
-    </a>
+  <a href="#home" class="brand">
+    <span class="brand-mark">T</span>
+    <span>TECH<span>DECOR</span></span>
+  </a>
 
-    <nav class="nav-links">
-      <a href="#home">HOME</a>
-      <a href="#products">PRODUCTS</a>
-      <a href="#about">ABOUT</a>
-    </nav>
+  <nav class="nav-links">
+    <a href="#home">HOME</a>
+    <a href="#products">PRODUCTS</a>
+    <a href="#about">ABOUT</a>
+  </nav>
 
-    <button id="cartButton" class="cart-button">
-      CART <b id="cartCount">0</b>
-    </button>
+  <button id="cartButton" class="cart-button">
+    CART <b id="cartCount">0</b>
+  </button>
 
-  </header>
+</header>
 
 
-  <section class="hero" id="home">
+<section class="hero" id="home">
 
-    <div class="hero-background"></div>
+  <div class="hero-background"></div>
 
-    <div class="hero-content">
+  <div class="hero-content">
 
-      <div class="hero-small">
-        <span></span>
-        NEXT GENERATION TECHNOLOGY
-      </div>
+    <div class="hero-small">
+      <span></span>
+      NEXT GENERATION TECHNOLOGY
+    </div>
 
-      <h1>
-        THE FUTURE
-        <span>IS HERE.</span>
-      </h1>
+    <h1>
+      THE FUTURE
+      <span>IS HERE.</span>
+    </h1>
 
-      <p>
-        Premium technology products built around
-        performance, precision and futuristic design.
-      </p>
+    <p>
+      Premium technology products built around
+      performance, precision and futuristic design.
+    </p>
 
-      <div class="hero-actions">
+    <div class="hero-actions">
 
-        <a href="#products" class="primary-button">
-          EXPLORE PRODUCTS
-          <span>↗</span>
-        </a>
+      <a href="#products" class="primary-button">
+        EXPLORE PRODUCTS
+        <span>↗</span>
+      </a>
 
-        <a href="#about" class="secondary-button">
-          DISCOVER TECH
-        </a>
-
-      </div>
-
-      <div class="hero-stats">
-
-        <div>
-          <strong>03</strong>
-          <span>PRODUCTS</span>
-        </div>
-
-        <div>
-          <strong>∞</strong>
-          <span>POSSIBILITIES</span>
-        </div>
-
-        <div>
-          <strong>2026</strong>
-          <span>COLLECTION</span>
-        </div>
-
-      </div>
+      <a href="#about" class="secondary-button">
+        DISCOVER TECH
+      </a>
 
     </div>
 
-
-    <div class="hero-scene">
-
-      <div class="scene-label scene-label-1">
-        SYSTEM / 01
-      </div>
-
-      <div class="scene-label scene-label-2">
-        TECHDECOR LAB
-      </div>
-
-      <div id="hero3d" class="three-container"></div>
-
-    </div>
-
-
-    <div class="hero-bottom">
-      <span>SCROLL TO EXPLORE</span>
-      <div></div>
-      <span>EST. 2026</span>
-    </div>
-
-  </section>
-
-
-  <section class="products-section" id="products">
-
-    <div class="section-heading">
+    <div class="hero-stats">
 
       <div>
-        <div class="section-label">
-          01 / COLLECTION
-        </div>
-
-        <h2>
-          DESIGNED FOR
-          <span>THE FUTURE.</span>
-        </h2>
+        <strong>03</strong>
+        <span>PRODUCTS</span>
       </div>
-
-      <p>
-        Three futuristic devices designed to
-        transform your everyday technology setup.
-      </p>
-
-    </div>
-
-
-    <div id="productsGrid" class="products-grid"></div>
-
-
-    <div class="feature-row">
-
-      <div class="feature">
-        <span>01</span>
-        <strong>PREMIUM DESIGN</strong>
-        <p>
-          Modern forms inspired by industrial
-          design and futuristic architecture.
-        </p>
-      </div>
-
-      <div class="feature">
-        <span>02</span>
-        <strong>HIGH PERFORMANCE</strong>
-        <p>
-          Technology engineered around speed,
-          precision and reliability.
-        </p>
-      </div>
-
-      <div class="feature">
-        <span>03</span>
-        <strong>FUTURE READY</strong>
-        <p>
-          Built for a new generation of digital
-          experiences.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="about-section" id="about">
-
-    <div class="about-inner">
-
-      <div class="section-label">
-        02 / ABOUT TECHDECOR
-      </div>
-
-      <h2>
-        TECHNOLOGY
-        <span>REDEFINED.</span>
-      </h2>
-
-      <p>
-        TECHDECOR is a futuristic technology concept
-        built around premium hardware, modern digital
-        experiences and a bold design language.
-      </p>
-
-    </div>
-
-    <div class="about-number">
-      2026
-    </div>
-
-  </section>
-
-
-  <footer class="footer">
-
-    <div class="footer-brand">
-      <div class="brand">
-        <span class="brand-mark">T</span>
-        <span>TECH<span>DECOR</span></span>
-      </div>
-
-      <p>THE FUTURE IS HERE.</p>
-    </div>
-
-    <div class="footer-links">
-      <a href="#home">HOME</a>
-      <a href="#products">PRODUCTS</a>
-      <a href="#about">ABOUT</a>
-    </div>
-
-    <div class="footer-copy">
-      © 2026 TECHDECOR
-    </div>
-
-  </footer>
-
-
-  <!-- CART -->
-
-  <div id="cartOverlay" class="cart-overlay"></div>
-
-  <aside id="cartPanel" class="cart-panel">
-
-    <div class="cart-header">
 
       <div>
-        <small>TECHDECOR</small>
-        <h2>YOUR CART</h2>
+        <strong>∞</strong>
+        <span>POSSIBILITIES</span>
       </div>
 
-      <button id="closeCart" class="close-button">
-        ×
-      </button>
-
-    </div>
-
-    <div id="cartItems" class="cart-items"></div>
-
-    <div class="cart-footer">
-
-      <div class="cart-total">
-        <span>TOTAL</span>
-        <strong id="cartTotal">₹0</strong>
-      </div>
-
-      <button id="checkoutButton" class="checkout-button">
-        CHECKOUT
-      </button>
-
-    </div>
-
-  </aside>
-
-
-  <!-- PRODUCT MODAL -->
-
-  <div id="productModal" class="modal">
-
-    <div class="modal-box">
-
-      <button
-        id="closeProductModal"
-        class="close-button modal-close"
-      >
-        ×
-      </button>
-
-      <div id="modalVisual" class="modal-visual"></div>
-
-      <div class="modal-info">
-
-        <div id="modalCategory" class="modal-category"></div>
-
-        <h2 id="modalTitle"></h2>
-
-        <p id="modalDescription"></p>
-
-        <strong id="modalPrice" class="modal-price"></strong>
-
-        <div id="modalFeatures" class="modal-features"></div>
-
-        <button
-          id="modalAddButton"
-          class="primary-button full-button"
-        >
-          ADD TO CART
-        </button>
-
+      <div>
+        <strong>2026</strong>
+        <span>COLLECTION</span>
       </div>
 
     </div>
 
   </div>
 
+  <div class="hero-scene">
 
-  <!-- CHECKOUT MODAL -->
+    <div class="scene-label scene-label-1">
+      SYSTEM / 01
+    </div>
 
-  <div id="checkoutModal" class="modal">
+    <div class="scene-label scene-label-2">
+      TECHDECOR LAB
+    </div>
 
-    <div class="checkout-box">
+    <div id="hero3d" class="three-container"></div>
 
-      <button
-        id="closeCheckout"
-        class="close-button modal-close"
-      >
-        ×
-      </button>
+  </div>
+
+  <div class="hero-bottom">
+    <span>SCROLL TO EXPLORE</span>
+    <div></div>
+    <span>EST. 2026</span>
+  </div>
+
+</section>
+
+
+<section class="products-section" id="products">
+
+  <div class="section-heading">
+
+    <div>
 
       <div class="section-label">
-        CHECKOUT
+        01 / COLLECTION
       </div>
 
       <h2>
-        COMPLETE
-        <span>YOUR ORDER.</span>
+        DESIGNED FOR
+        <span>THE FUTURE.</span>
       </h2>
 
-      <p class="checkout-note">
-        Demo checkout. No real payment is processed.
+    </div>
+
+    <p>
+      Premium technology with real product
+      photography and a modern digital shopping
+      experience.
+    </p>
+
+  </div>
+
+
+  <div id="productsGrid" class="products-grid"></div>
+
+
+  <div class="feature-row">
+
+    <div class="feature">
+      <span>01</span>
+      <strong>REAL PRODUCT VISUALS</strong>
+      <p>
+        Product photography replaces the old
+        placeholder figures.
       </p>
+    </div>
 
-      <div class="checkout-fields">
+    <div class="feature">
+      <span>02</span>
+      <strong>DETAILED PRODUCTS</strong>
+      <p>
+        Open any product for a larger shopping view
+        and technical details.
+      </p>
+    </div>
 
-        <input id="customerName" placeholder="Full name">
+    <div class="feature">
+      <span>03</span>
+      <strong>FAST EXPERIENCE</strong>
+      <p>
+        Lightweight frontend with your existing
+        Three.js experience.
+      </p>
+    </div>
 
-        <input id="customerPhone" placeholder="Phone number">
+  </div>
 
-        <input id="customerEmail" placeholder="Email address">
+</section>
 
-        <input id="customerCity" placeholder="City">
 
-        <textarea
-          id="customerAddress"
-          placeholder="Delivery address"
-        ></textarea>
+<section class="about-section" id="about">
 
-      </div>
+  <div class="about-inner">
 
-      <div id="checkoutSummary" class="checkout-summary"></div>
+    <div class="section-label">
+      02 / ABOUT TECHDECOR
+    </div>
+
+    <h2>
+      TECHNOLOGY
+      <span>REDEFINED.</span>
+    </h2>
+
+    <p>
+      TECHDECOR is a futuristic technology concept
+      built around premium hardware, modern digital
+      experiences and a bold visual identity.
+    </p>
+
+  </div>
+
+  <div class="about-number">
+    2026
+  </div>
+
+</section>
+
+
+<footer class="footer">
+
+  <div class="footer-brand">
+
+    <div class="brand">
+      <span class="brand-mark">T</span>
+      <span>TECH<span>DECOR</span></span>
+    </div>
+
+    <p>
+      THE FUTURE IS HERE.
+    </p>
+
+  </div>
+
+  <div class="footer-links">
+
+    <a href="#home">HOME</a>
+    <a href="#products">PRODUCTS</a>
+    <a href="#about">ABOUT</a>
+
+  </div>
+
+  <div class="footer-copy">
+    © 2026 TECHDECOR
+  </div>
+
+</footer>
+
+
+<!-- CART -->
+
+<div id="cartOverlay" class="cart-overlay"></div>
+
+<aside id="cartPanel" class="cart-panel">
+
+  <div class="cart-header">
+
+    <div>
+      <small>TECHDECOR</small>
+      <h2>YOUR CART</h2>
+    </div>
+
+    <button id="closeCart" class="close-button">
+      ×
+    </button>
+
+  </div>
+
+  <div id="cartItems" class="cart-items"></div>
+
+  <div class="cart-footer">
+
+    <div class="cart-total">
+      <span>TOTAL</span>
+      <strong id="cartTotal">₹0</strong>
+    </div>
+
+    <button
+      id="checkoutButton"
+      class="checkout-button"
+    >
+      CHECKOUT
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- PRODUCT DETAIL -->
+
+<div id="productModal" class="modal">
+
+  <div class="product-detail-box">
+
+    <button
+      id="closeProductModal"
+      class="close-button detail-close"
+    >
+      ×
+    </button>
+
+    <div class="detail-image-wrap">
+      <img id="modalImage" alt="">
+    </div>
+
+    <div class="detail-content">
+
+      <div
+        id="modalCategory"
+        class="modal-category"
+      ></div>
+
+      <h2 id="modalTitle"></h2>
+
+      <p id="modalDescription"></p>
+
+      <strong
+        id="modalPrice"
+        class="modal-price"
+      ></strong>
+
+      <div
+        id="modalFeatures"
+        class="modal-features"
+      ></div>
 
       <button
-        id="confirmOrder"
+        id="modalAddButton"
         class="primary-button full-button"
       >
-        PLACE DEMO ORDER
+        ADD TO CART
       </button>
 
     </div>
@@ -408,55 +376,81 @@ document.body.innerHTML = `
   </div>
 
 </div>
-`;
 
 
-/* =========================================================
-   PRODUCT VISUALS
-   ========================================================= */
+<!-- CHECKOUT -->
 
-function getVisual(id) {
+<div id="checkoutModal" class="modal">
 
-  if (id === "x1") {
+  <div class="checkout-box">
 
-    return `
-      <div class="headphone-figure">
+    <button
+      id="closeCheckout"
+      class="close-button detail-close"
+    >
+      ×
+    </button>
 
-        <div class="headphone-band"></div>
+    <div class="section-label">
+      CHECKOUT
+    </div>
 
-        <div class="earcup left"></div>
-        <div class="earcup right"></div>
+    <h2>
+      COMPLETE
+      <span>YOUR ORDER.</span>
+    </h2>
 
-        <div class="headphone-light"></div>
+    <p class="checkout-note">
+      Demo checkout — no real payment is processed.
+    </p>
 
-      </div>
-    `;
+    <div class="checkout-fields">
 
-  }
+      <input
+        id="customerName"
+        placeholder="Full name"
+      >
 
-  if (id === "k2") {
+      <input
+        id="customerPhone"
+        placeholder="Phone number"
+      >
 
-    return `
-      <div class="keyboard-figure">
+      <input
+        id="customerEmail"
+        placeholder="Email address"
+      >
 
-        <div class="keyboard-keys"></div>
+      <input
+        id="customerCity"
+        placeholder="City"
+      >
 
-        <div class="keyboard-edge"></div>
-
-      </div>
-    `;
-
-  }
-
-  return `
-    <div class="mouse-figure">
-
-      <div class="mouse-line"></div>
-      <div class="mouse-wheel"></div>
+      <textarea
+        id="customerAddress"
+        placeholder="Delivery address"
+      ></textarea>
 
     </div>
-  `;
-}
+
+    <div
+      id="checkoutSummary"
+      class="checkout-summary"
+    ></div>
+
+    <button
+      id="confirmOrder"
+      class="primary-button full-button"
+    >
+      PLACE DEMO ORDER
+    </button>
+
+  </div>
+
+</div>
+
+</div>
+`;
 
 
 /* =========================================================
@@ -464,13 +458,15 @@ function getVisual(id) {
    ========================================================= */
 
 const productsGrid =
-  document.getElementById("productsGrid");
+  document.getElementById(
+    "productsGrid"
+  );
 
 
 productsGrid.innerHTML =
-  products.map((product, index) => {
+  products.map(
+    (product, index) => `
 
-    return `
       <article class="product-card">
 
         <div class="product-visual">
@@ -485,7 +481,12 @@ productsGrid.innerHTML =
 
           <div class="visual-glow"></div>
 
-          ${getVisual(product.id)}
+          <img
+            class="product-photo"
+            src="${product.image}"
+            alt="${product.name}"
+            loading="lazy"
+          >
 
         </div>
 
@@ -532,9 +533,9 @@ productsGrid.innerHTML =
         </div>
 
       </article>
-    `;
 
-  }).join("");
+    `
+  ).join("");
 
 
 /* =========================================================
@@ -543,30 +544,46 @@ productsGrid.innerHTML =
 
 let cart =
   JSON.parse(
-    localStorage.getItem("techdecor_cart") || "[]"
+    localStorage.getItem(
+      "techdecor_cart"
+    ) || "[]"
   );
 
 
 const cartButton =
-  document.getElementById("cartButton");
+  document.getElementById(
+    "cartButton"
+  );
 
 const cartPanel =
-  document.getElementById("cartPanel");
+  document.getElementById(
+    "cartPanel"
+  );
 
 const cartOverlay =
-  document.getElementById("cartOverlay");
+  document.getElementById(
+    "cartOverlay"
+  );
 
 const closeCart =
-  document.getElementById("closeCart");
+  document.getElementById(
+    "closeCart"
+  );
 
 const cartItems =
-  document.getElementById("cartItems");
+  document.getElementById(
+    "cartItems"
+  );
 
 const cartCount =
-  document.getElementById("cartCount");
+  document.getElementById(
+    "cartCount"
+  );
 
 const cartTotal =
-  document.getElementById("cartTotal");
+  document.getElementById(
+    "cartTotal"
+  );
 
 
 function saveCart() {
@@ -579,7 +596,7 @@ function saveCart() {
 }
 
 
-function totalItems() {
+function itemCount() {
 
   return cart.reduce(
     (sum, item) =>
@@ -603,18 +620,28 @@ function totalPrice() {
 }
 
 
-function openCartPanel() {
+function openCart() {
 
-  cartPanel.classList.add("active");
-  cartOverlay.classList.add("active");
+  cartPanel.classList.add(
+    "active"
+  );
+
+  cartOverlay.classList.add(
+    "active"
+  );
 
 }
 
 
 function closeCartPanel() {
 
-  cartPanel.classList.remove("active");
-  cartOverlay.classList.remove("active");
+  cartPanel.classList.remove(
+    "active"
+  );
+
+  cartOverlay.classList.remove(
+    "active"
+  );
 
 }
 
@@ -654,11 +681,15 @@ function addToCart(id) {
 }
 
 
-function updateQuantity(id, amount) {
+function changeQuantity(
+  id,
+  amount
+) {
 
   const item =
     cart.find(
-      product => product.id === id
+      product =>
+        product.id === id
     );
 
   if (!item) return;
@@ -669,7 +700,8 @@ function updateQuantity(id, amount) {
 
     cart =
       cart.filter(
-        product => product.id !== id
+        product =>
+          product.id !== id
       );
 
   }
@@ -683,8 +715,7 @@ function updateQuantity(id, amount) {
 function renderCart() {
 
   cartCount.textContent =
-    totalItems();
-
+    itemCount();
 
   cartTotal.textContent =
     "₹" +
@@ -707,9 +738,9 @@ function renderCart() {
 
 
   cartItems.innerHTML =
-    cart.map(item => {
+    cart.map(
+      item => `
 
-      return `
         <div class="cart-item">
 
           <div>
@@ -725,8 +756,8 @@ function renderCart() {
             <div class="quantity">
 
               <button
-                data-minus="${item.id}"
                 class="quantity-button"
+                data-minus="${item.id}"
               >
                 −
               </button>
@@ -736,8 +767,8 @@ function renderCart() {
               </span>
 
               <button
-                data-plus="${item.id}"
                 class="quantity-button"
+                data-plus="${item.id}"
               >
                 +
               </button>
@@ -754,54 +785,62 @@ function renderCart() {
           </strong>
 
         </div>
-      `;
 
-    }).join("");
-
-
-  document
-    .querySelectorAll("[data-minus]")
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          updateQuantity(
-            button.dataset.minus,
-            -1
-          );
-
-        }
-      );
-
-    });
+      `
+    ).join("");
 
 
   document
-    .querySelectorAll("[data-plus]")
-    .forEach(button => {
+    .querySelectorAll(
+      "[data-minus]"
+    )
+    .forEach(
+      button => {
 
-      button.addEventListener(
-        "click",
-        () => {
+        button.addEventListener(
+          "click",
+          () => {
 
-          updateQuantity(
-            button.dataset.plus,
-            1
-          );
+            changeQuantity(
+              button.dataset.minus,
+              -1
+            );
 
-        }
-      );
+          }
+        );
 
-    });
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      "[data-plus]"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            changeQuantity(
+              button.dataset.plus,
+              1
+            );
+
+          }
+        );
+
+      }
+    );
 
 }
 
 
 cartButton.addEventListener(
   "click",
-  openCartPanel
+  openCart
 );
 
 closeCart.addEventListener(
@@ -815,32 +854,32 @@ cartOverlay.addEventListener(
 );
 
 
-/* =========================================================
-   ADD BUTTONS
-   ========================================================= */
-
 document
-  .querySelectorAll("[data-add]")
-  .forEach(button => {
+  .querySelectorAll(
+    "[data-add]"
+  )
+  .forEach(
+    button => {
 
-    button.addEventListener(
-      "click",
-      () => {
+      button.addEventListener(
+        "click",
+        () => {
 
-        addToCart(
-          button.dataset.add
-        );
+          addToCart(
+            button.dataset.add
+          );
 
-        openCartPanel();
+          openCart();
 
-      }
-    );
+        }
+      );
 
-  });
+    }
+  );
 
 
 /* =========================================================
-   PRODUCT MODAL
+   PRODUCT DETAIL
    ========================================================= */
 
 const productModal =
@@ -848,9 +887,9 @@ const productModal =
     "productModal"
   );
 
-const modalVisual =
+const modalImage =
   document.getElementById(
-    "modalVisual"
+    "modalImage"
   );
 
 const modalCategory =
@@ -890,15 +929,18 @@ function openProduct(id) {
 
   selectedProduct =
     products.find(
-      product => product.id === id
+      product =>
+        product.id === id
     );
 
   if (!selectedProduct) return;
 
-  modalVisual.innerHTML =
-    getVisual(
-      selectedProduct.id
-    );
+
+  modalImage.src =
+    selectedProduct.image;
+
+  modalImage.alt =
+    selectedProduct.name;
 
   modalCategory.textContent =
     selectedProduct.category;
@@ -923,6 +965,7 @@ function openProduct(id) {
       )
       .join("");
 
+
   productModal.classList.add(
     "active"
   );
@@ -931,25 +974,31 @@ function openProduct(id) {
 
 
 document
-  .querySelectorAll("[data-details]")
-  .forEach(button => {
+  .querySelectorAll(
+    "[data-details]"
+  )
+  .forEach(
+    button => {
 
-    button.addEventListener(
-      "click",
-      () => {
+      button.addEventListener(
+        "click",
+        () => {
 
-        openProduct(
-          button.dataset.details
-        );
+          openProduct(
+            button.dataset.details
+          );
 
-      }
-    );
+        }
+      );
 
-  });
+    }
+  );
 
 
 document
-  .getElementById("closeProductModal")
+  .getElementById(
+    "closeProductModal"
+  )
   .addEventListener(
     "click",
     () => {
@@ -976,7 +1025,7 @@ modalAddButton.addEventListener(
       "active"
     );
 
-    openCartPanel();
+    openCart();
 
   }
 );
@@ -998,7 +1047,9 @@ const checkoutSummary =
 
 
 document
-  .getElementById("checkoutButton")
+  .getElementById(
+    "checkoutButton"
+  )
   .addEventListener(
     "click",
     () => {
@@ -1015,30 +1066,33 @@ document
 
 
       checkoutSummary.innerHTML =
-        cart.map(item => {
+        cart
+          .map(
+            item => `
 
-          return `
-            <div class="summary-row">
+              <div class="summary-row">
 
-              <span>
-                ${item.name} × ${item.quantity}
-              </span>
+                <span>
+                  ${item.name} × ${item.quantity}
+                </span>
 
-              <strong>
-                ₹${(
-                  item.price *
-                  item.quantity
-                ).toLocaleString(
-                  "en-IN"
-                )}
-              </strong>
+                <strong>
+                  ₹${(
+                    item.price *
+                    item.quantity
+                  ).toLocaleString(
+                    "en-IN"
+                  )}
+                </strong>
 
-            </div>
-          `;
+              </div>
 
-        }).join("") +
+            `
+          )
+          .join("") +
 
         `
+
           <div class="summary-row summary-total">
 
             <span>TOTAL</span>
@@ -1050,6 +1104,7 @@ document
             </strong>
 
           </div>
+
         `;
 
 
@@ -1062,7 +1117,9 @@ document
 
 
 document
-  .getElementById("closeCheckout")
+  .getElementById(
+    "closeCheckout"
+  )
   .addEventListener(
     "click",
     () => {
@@ -1076,12 +1133,14 @@ document
 
 
 document
-  .getElementById("confirmOrder")
+  .getElementById(
+    "confirmOrder"
+  )
   .addEventListener(
     "click",
     () => {
 
-      const requiredFields = [
+      const fieldIds = [
         "customerName",
         "customerPhone",
         "customerEmail",
@@ -1091,12 +1150,13 @@ document
 
 
       for (
-        const id of requiredFields
+        const id of fieldIds
       ) {
 
         const field =
-          document.getElementById(id);
-
+          document.getElementById(
+            id
+          );
 
         if (
           !field.value.trim()
@@ -1115,7 +1175,7 @@ document
       }
 
 
-      const orderNumber =
+      const order =
         "TD-" +
         Math.floor(
           100000 +
@@ -1127,7 +1187,7 @@ document
       alert(
         "ORDER CREATED SUCCESSFULLY!\\n\\n" +
         "Order: " +
-        orderNumber +
+        order +
         "\\n" +
         "Total: ₹" +
         totalPrice().toLocaleString(
@@ -1149,8 +1209,7 @@ document
 
       closeCartPanel();
 
-
-      requiredFields.forEach(
+      fieldIds.forEach(
         id => {
 
           document.getElementById(
@@ -1162,34 +1221,6 @@ document
 
     }
   );
-
-
-/* =========================================================
-   MODALS + ESCAPE
-   ========================================================= */
-
-document
-  .querySelectorAll(".modal")
-  .forEach(modal => {
-
-    modal.addEventListener(
-      "click",
-      event => {
-
-        if (
-          event.target === modal
-        ) {
-
-          modal.classList.remove(
-            "active"
-          );
-
-        }
-
-      }
-    );
-
-  });
 
 
 window.addEventListener(
@@ -1220,10 +1251,10 @@ renderCart();
 
 
 /* =========================================================
-   THREE.JS — LARGE VISIBLE 3D HERO
+   THREE.JS HERO
    ========================================================= */
 
-const hero3d =
+const container =
   document.getElementById(
     "hero3d"
   );
@@ -1241,8 +1272,8 @@ scene.background =
 const camera =
   new THREE.PerspectiveCamera(
     40,
-    hero3d.clientWidth /
-      hero3d.clientHeight,
+    container.clientWidth /
+      container.clientHeight,
     0.1,
     100
   );
@@ -1271,8 +1302,8 @@ renderer.setPixelRatio(
 
 
 renderer.setSize(
-  hero3d.clientWidth,
-  hero3d.clientHeight
+  container.clientWidth,
+  container.clientHeight
 );
 
 
@@ -1280,78 +1311,81 @@ renderer.outputColorSpace =
   THREE.SRGBColorSpace;
 
 
-hero3d.appendChild(
+container.appendChild(
   renderer.domElement
 );
 
 
-/* LIGHTS */
+/* Lights */
 
-const ambient =
+scene.add(
   new THREE.AmbientLight(
     0xffffff,
     1.8
-  );
+  )
+);
 
-scene.add(ambient);
 
-
-const light1 =
+const blueLight =
   new THREE.PointLight(
-    0x4e7cff,
+    0x4f7dff,
     40,
     15
   );
 
-light1.position.set(
+blueLight.position.set(
   -3,
   3,
   4
 );
 
-scene.add(light1);
+scene.add(
+  blueLight
+);
 
 
-const light2 =
+const purpleLight =
   new THREE.PointLight(
-    0x9a49ff,
+    0x9848ff,
     35,
     14
   );
 
-light2.position.set(
+purpleLight.position.set(
   4,
   -1,
   3
 );
 
-scene.add(light2);
+scene.add(
+  purpleLight
+);
 
 
-const light3 =
+const whiteLight =
   new THREE.DirectionalLight(
     0xffffff,
     3
   );
 
-light3.position.set(
+whiteLight.position.set(
   2,
   5,
   5
 );
 
-scene.add(light3);
+scene.add(
+  whiteLight
+);
 
 
-/* MAIN OBJECT */
+/* Main object */
 
 const object =
   new THREE.Group();
 
 scene.add(object);
 
-
-/* CORE */
 
 const core =
   new THREE.Mesh(
@@ -1364,18 +1398,17 @@ const core =
       metalness: 0.75,
       roughness: 0.17,
       clearcoat: 1,
-      clearcoatRoughness: 0.08,
-      emissive: 0x0b1b4d,
-      emissiveIntensity: 1.3
+      emissive: 0x0b1d50,
+      emissiveIntensity: 1.2
     })
   );
 
-object.add(core);
+object.add(
+  core
+);
 
 
-/* INNER CORE */
-
-const innerCore =
+const inner =
   new THREE.Mesh(
     new THREE.SphereGeometry(
       0.78,
@@ -1383,80 +1416,82 @@ const innerCore =
       48
     ),
     new THREE.MeshBasicMaterial({
-      color: 0x4778ff
+      color: 0x4c7dff
     })
   );
 
-object.add(innerCore);
+object.add(
+  inner
+);
 
 
-/* RINGS */
-
-const ringA =
+const ring1 =
   new THREE.Mesh(
     new THREE.TorusGeometry(
-      1.85,
+      1.8,
       0.035,
       18,
       100
     ),
     new THREE.MeshBasicMaterial({
-      color: 0x7199ff
+      color: 0x789aff
     })
   );
 
-ringA.rotation.x =
+ring1.rotation.x =
   Math.PI / 2.4;
 
-object.add(ringA);
+object.add(
+  ring1
+);
 
 
-const ringB =
+const ring2 =
   new THREE.Mesh(
     new THREE.TorusGeometry(
-      2.15,
+      2.12,
       0.025,
       18,
       100
     ),
     new THREE.MeshBasicMaterial({
-      color: 0x9b52ff,
-      transparent: true,
-      opacity: 0.8
+      color: 0x9c53ff
     })
   );
 
-ringB.rotation.y =
+ring2.rotation.y =
   Math.PI / 2.8;
 
-object.add(ringB);
+object.add(
+  ring2
+);
 
 
-const ringC =
+const ring3 =
   new THREE.Mesh(
     new THREE.TorusGeometry(
-      2.4,
+      2.38,
       0.018,
       18,
       100
     ),
     new THREE.MeshBasicMaterial({
-      color: 0x5c82ff,
-      transparent: true,
-      opacity: 0.55
+      color: 0x668cff
     })
   );
 
-ringC.rotation.x =
+ring3.rotation.x =
   Math.PI / 4;
 
-ringC.rotation.z =
+ring3.rotation.z =
   Math.PI / 5;
 
-object.add(ringC);
+object.add(
+  ring3
+);
 
 
-/* FLOATING CUBES */
+/* Floating cubes */
 
 const cubeGroup =
   new THREE.Group();
@@ -1480,10 +1515,10 @@ for (
         0.13
       ),
       new THREE.MeshStandardMaterial({
-        color: 0x6d8fff,
+        color: 0x7293ff,
         metalness: 0.8,
         roughness: 0.2,
-        emissive: 0x18346f,
+        emissive: 0x17306c,
         emissiveIntensity: 1
       })
     );
@@ -1496,13 +1531,16 @@ for (
 
 
   const radius =
-    2.7 +
-    (i % 3) * 0.25;
+    2.65 +
+    (i % 3) *
+    0.25;
 
 
   cube.position.set(
     Math.cos(angle) * radius,
-    Math.sin(angle * 2.1) * 0.75,
+    Math.sin(
+      angle * 2.1
+    ) * 0.75,
     Math.sin(angle) * radius
   );
 
@@ -1514,7 +1552,7 @@ for (
 }
 
 
-/* FLOOR */
+/* Floor */
 
 const floor =
   new THREE.Mesh(
@@ -1524,7 +1562,7 @@ const floor =
     ),
     new THREE.MeshStandardMaterial({
       color: 0x040508,
-      roughness: 0.5,
+      roughness: 0.55,
       metalness: 0.25
     })
   );
@@ -1535,26 +1573,30 @@ floor.rotation.x =
 floor.position.y =
   -1.8;
 
-scene.add(floor);
+scene.add(
+  floor
+);
 
 
-/* GRID */
+/* Grid */
 
 const grid =
   new THREE.GridHelper(
     22,
     35,
-    0x1c2e5e,
-    0x0d162c
+    0x1c2f60,
+    0x0c152b
   );
 
 grid.position.y =
   -1.79;
 
-scene.add(grid);
+scene.add(
+  grid
+);
 
 
-/* PARTICLES */
+/* Particles */
 
 const count =
   1000;
@@ -1595,29 +1637,24 @@ particleGeometry.setAttribute(
 );
 
 
-const particleMaterial =
-  new THREE.PointsMaterial({
-    color: 0x799bff,
-    size: 0.022,
-    transparent: true,
-    opacity: 0.7
-  });
-
-
-const particleSystem =
+const particles =
   new THREE.Points(
     particleGeometry,
-    particleMaterial
+    new THREE.PointsMaterial({
+      color: 0x799cff,
+      size: 0.022,
+      transparent: true,
+      opacity: 0.7
+    })
   );
 
+
 scene.add(
-  particleSystem
+  particles
 );
 
 
-/* =========================================================
-   MOUSE + ANIMATION
-   ========================================================= */
+/* Animation */
 
 let mouseX = 0;
 let mouseY = 0;
@@ -1676,7 +1713,7 @@ function animate() {
     0.12;
 
 
-  innerCore.scale.setScalar(
+  inner.scale.setScalar(
     1 +
     Math.sin(
       time * 2
@@ -1685,15 +1722,13 @@ function animate() {
   );
 
 
-  ringA.rotation.z =
+  ring1.rotation.z =
     time * 0.4;
 
-
-  ringB.rotation.x =
+  ring2.rotation.x =
     time * 0.28;
 
-
-  ringC.rotation.y =
+  ring3.rotation.y =
     time * 0.35;
 
 
@@ -1701,7 +1736,7 @@ function animate() {
     time * 0.12;
 
 
-  particleSystem.rotation.y =
+  particles.rotation.y =
     time * 0.01;
 
 
@@ -1738,18 +1773,17 @@ function animate() {
 animate();
 
 
-/* RESIZE */
+/* Resize */
 
 window.addEventListener(
   "resize",
   () => {
 
     const width =
-      hero3d.clientWidth;
+      container.clientWidth;
 
     const height =
-      hero3d.clientHeight;
-
+      container.clientHeight;
 
     if (
       width === 0 ||
@@ -1758,12 +1792,10 @@ window.addEventListener(
       return;
     }
 
-
     camera.aspect =
       width / height;
 
     camera.updateProjectionMatrix();
-
 
     renderer.setSize(
       width,
