@@ -1251,47 +1251,53 @@ renderCart();
 
 
 /* =========================================================
-   THREE.JS HERO
+   THREE.JS HERO — FLOATING FLAGSHIP LAPTOP
    ========================================================= */
 
 const container =
-  document.getElementById(
-    "hero3d"
-  );
+  document.getElementById("hero3d");
 
+
+/* =========================================================
+   SCENE
+   ========================================================= */
 
 const scene =
   new THREE.Scene();
 
 scene.background =
-  new THREE.Color(
-    0x040508
-  );
+  new THREE.Color(0x040508);
 
+
+/* =========================================================
+   CAMERA
+   ========================================================= */
 
 const camera =
   new THREE.PerspectiveCamera(
-    40,
+    38,
     container.clientWidth /
       container.clientHeight,
     0.1,
     100
   );
 
-
 camera.position.set(
-  0,
-  0.2,
-  7
+  0.35,
+  0.45,
+  7.4
 );
 
+
+/* =========================================================
+   RENDERER
+   ========================================================= */
 
 const renderer =
   new THREE.WebGLRenderer({
     antialias: true,
     alpha: true
   });
-
 
 renderer.setPixelRatio(
   Math.min(
@@ -1300,23 +1306,28 @@ renderer.setPixelRatio(
   )
 );
 
-
 renderer.setSize(
   container.clientWidth,
   container.clientHeight
 );
 
-
 renderer.outputColorSpace =
   THREE.SRGBColorSpace;
 
+renderer.shadowMap.enabled =
+  true;
+
+renderer.shadowMap.type =
+  THREE.PCFSoftShadowMap;
 
 container.appendChild(
   renderer.domElement
 );
 
 
-/* Lights */
+/* =========================================================
+   LIGHTING
+   ========================================================= */
 
 scene.add(
   new THREE.AmbientLight(
@@ -1328,13 +1339,13 @@ scene.add(
 
 const blueLight =
   new THREE.PointLight(
-    0x4f7dff,
-    40,
-    15
+    0x4d7dff,
+    45,
+    16
   );
 
 blueLight.position.set(
-  -3,
+  -3.5,
   3,
   4
 );
@@ -1346,13 +1357,13 @@ scene.add(
 
 const purpleLight =
   new THREE.PointLight(
-    0x9848ff,
-    35,
-    14
+    0x944dff,
+    32,
+    15
   );
 
 purpleLight.position.set(
-  4,
+  3.5,
   -1,
   3
 );
@@ -1365,13 +1376,13 @@ scene.add(
 const whiteLight =
   new THREE.DirectionalLight(
     0xffffff,
-    3
+    4.5
   );
 
 whiteLight.position.set(
   2,
-  5,
-  5
+  6,
+  7
 );
 
 scene.add(
@@ -1379,248 +1390,901 @@ scene.add(
 );
 
 
-/* Main object */
+/* =========================================================
+   LAPTOP GROUP
+   ========================================================= */
 
-const object =
+const laptop =
   new THREE.Group();
 
-scene.add(object);
+laptop.rotation.y =
+  -0.28;
 
-
-const core =
-  new THREE.Mesh(
-    new THREE.IcosahedronGeometry(
-      1.45,
-      5
-    ),
-    new THREE.MeshPhysicalMaterial({
-      color: 0x111a30,
-      metalness: 0.75,
-      roughness: 0.17,
-      clearcoat: 1,
-      emissive: 0x0b1d50,
-      emissiveIntensity: 1.2
-    })
-  );
-
-object.add(
-  core
-);
-
-
-const inner =
-  new THREE.Mesh(
-    new THREE.SphereGeometry(
-      0.78,
-      48,
-      48
-    ),
-    new THREE.MeshBasicMaterial({
-      color: 0x4c7dff
-    })
-  );
-
-object.add(
-  inner
-);
-
-
-const ring1 =
-  new THREE.Mesh(
-    new THREE.TorusGeometry(
-      1.8,
-      0.035,
-      18,
-      100
-    ),
-    new THREE.MeshBasicMaterial({
-      color: 0x789aff
-    })
-  );
-
-ring1.rotation.x =
-  Math.PI / 2.4;
-
-object.add(
-  ring1
-);
-
-
-const ring2 =
-  new THREE.Mesh(
-    new THREE.TorusGeometry(
-      2.12,
-      0.025,
-      18,
-      100
-    ),
-    new THREE.MeshBasicMaterial({
-      color: 0x9c53ff
-    })
-  );
-
-ring2.rotation.y =
-  Math.PI / 2.8;
-
-object.add(
-  ring2
-);
-
-
-const ring3 =
-  new THREE.Mesh(
-    new THREE.TorusGeometry(
-      2.38,
-      0.018,
-      18,
-      100
-    ),
-    new THREE.MeshBasicMaterial({
-      color: 0x668cff
-    })
-  );
-
-ring3.rotation.x =
-  Math.PI / 4;
-
-ring3.rotation.z =
-  Math.PI / 5;
-
-object.add(
-  ring3
-);
-
-
-/* Floating cubes */
-
-const cubeGroup =
-  new THREE.Group();
+laptop.rotation.x =
+  0.045;
 
 scene.add(
-  cubeGroup
+  laptop
 );
+
+
+/* =========================================================
+   MATERIALS
+   ========================================================= */
+
+const laptopMetal =
+  new THREE.MeshPhysicalMaterial({
+    color: 0x252b35,
+    metalness: 0.92,
+    roughness: 0.18,
+    clearcoat: 1,
+    clearcoatRoughness: 0.08
+  });
+
+
+const darkMetal =
+  new THREE.MeshPhysicalMaterial({
+    color: 0x0d1118,
+    metalness: 0.95,
+    roughness: 0.14,
+    clearcoat: 1
+  });
+
+
+const edgeMetal =
+  new THREE.MeshPhysicalMaterial({
+    color: 0x4a5360,
+    metalness: 0.95,
+    roughness: 0.2
+  });
+
+
+const keyMaterial =
+  new THREE.MeshPhysicalMaterial({
+    color: 0x141922,
+    metalness: 0.5,
+    roughness: 0.3
+  });
+
+
+const blueMaterial =
+  new THREE.MeshStandardMaterial({
+    color: 0x7397ff,
+    emissive: 0x2d54c7,
+    emissiveIntensity: 1.8,
+    metalness: 0.6,
+    roughness: 0.2
+  });
+
+
+/* =========================================================
+   LAPTOP BASE
+   ========================================================= */
+
+const base =
+  new THREE.Mesh(
+    new THREE.BoxGeometry(
+      4.15,
+      0.20,
+      2.75
+    ),
+    laptopMetal
+  );
+
+base.position.set(
+  0,
+  -1.15,
+  0
+);
+
+base.castShadow = true;
+
+base.receiveShadow = true;
+
+laptop.add(
+  base
+);
+
+
+/* Front lip */
+
+const frontLip =
+  new THREE.Mesh(
+    new THREE.BoxGeometry(
+      4.05,
+      0.08,
+      0.11
+    ),
+    edgeMetal
+  );
+
+frontLip.position.set(
+  0,
+  -1.04,
+  1.30
+);
+
+laptop.add(
+  frontLip
+);
+
+
+/* =========================================================
+   KEYBOARD SURFACE
+   ========================================================= */
+
+const keyboardSurface =
+  new THREE.Mesh(
+    new THREE.BoxGeometry(
+      3.65,
+      0.045,
+      1.75
+    ),
+    darkMetal
+  );
+
+keyboardSurface.position.set(
+  0,
+  -1.02,
+  0.12
+);
+
+laptop.add(
+  keyboardSurface
+);
+
+
+/* =========================================================
+   KEYBOARD
+   ========================================================= */
+
+const keyRows = [
+  12,
+  12,
+  11,
+  10
+];
+
+const rowZ = [
+  -0.55,
+  -0.15,
+  0.25,
+  0.65
+];
 
 
 for (
-  let i = 0;
-  i < 10;
-  i++
+  let row = 0;
+  row < keyRows.length;
+  row++
 ) {
 
-  const cube =
-    new THREE.Mesh(
-      new THREE.BoxGeometry(
-        0.13,
-        0.13,
-        0.13
-      ),
-      new THREE.MeshStandardMaterial({
-        color: 0x7293ff,
-        metalness: 0.8,
-        roughness: 0.2,
-        emissive: 0x17306c,
-        emissiveIntensity: 1
-      })
+  const count =
+    keyRows[row];
+
+  const keyWidth =
+    0.205;
+
+  const gap =
+    0.055;
+
+  const totalWidth =
+    count * keyWidth +
+    (count - 1) * gap;
+
+
+  for (
+    let i = 0;
+    i < count;
+    i++
+  ) {
+
+    const key =
+      new THREE.Mesh(
+        new THREE.BoxGeometry(
+          keyWidth,
+          0.045,
+          0.23
+        ),
+        keyMaterial
+      );
+
+
+    key.position.set(
+      -totalWidth / 2 +
+      keyWidth / 2 +
+      i *
+      (keyWidth + gap),
+      -0.965,
+      rowZ[row]
     );
 
 
-  const angle =
-    (i / 10) *
-    Math.PI *
-    2;
+    key.castShadow =
+      true;
 
 
-  const radius =
-    2.65 +
-    (i % 3) *
-    0.25;
+    laptop.add(
+      key
+    );
+
+  }
+
+}
 
 
-  cube.position.set(
-    Math.cos(angle) * radius,
-    Math.sin(
-      angle * 2.1
-    ) * 0.75,
-    Math.sin(angle) * radius
+/* =========================================================
+   SPACE BAR
+   ========================================================= */
+
+const spaceBar =
+  new THREE.Mesh(
+    new THREE.BoxGeometry(
+      1.05,
+      0.045,
+      0.23
+    ),
+    keyMaterial
+  );
+
+spaceBar.position.set(
+  0,
+  -0.965,
+  0.96
+);
+
+laptop.add(
+  spaceBar
+);
+
+
+/* =========================================================
+   TRACKPAD
+   ========================================================= */
+
+const trackpad =
+  new THREE.Mesh(
+    new THREE.BoxGeometry(
+      1.15,
+      0.025,
+      0.70
+    ),
+    new THREE.MeshPhysicalMaterial({
+      color: 0x181d26,
+      metalness: 0.25,
+      roughness: 0.22,
+      clearcoat: 0.7
+    })
+  );
+
+trackpad.position.set(
+  0,
+  -0.962,
+  1.55
+);
+
+laptop.add(
+  trackpad
+);
+
+
+/* =========================================================
+   SCREEN FRAME
+   ========================================================= */
+
+const screenFrame =
+  new THREE.Mesh(
+    new THREE.BoxGeometry(
+      3.85,
+      2.55,
+      0.15
+    ),
+    darkMetal
+  );
+
+screenFrame.position.set(
+  0,
+  0.28,
+  -0.06
+);
+
+screenFrame.rotation.x =
+  -0.08;
+
+screenFrame.castShadow =
+  true;
+
+laptop.add(
+  screenFrame
+);
+
+
+/* =========================================================
+   SCREEN DISPLAY
+   ========================================================= */
+
+const displayCanvas =
+  document.createElement(
+    "canvas"
+  );
+
+displayCanvas.width =
+  1200;
+
+displayCanvas.height =
+  800;
+
+
+const displayContext =
+  displayCanvas.getContext(
+    "2d"
   );
 
 
-  cubeGroup.add(
-    cube
+/* background */
+
+const displayGradient =
+  displayContext.createLinearGradient(
+    0,
+    0,
+    1200,
+    800
+  );
+
+displayGradient.addColorStop(
+  0,
+  "#09142e"
+);
+
+displayGradient.addColorStop(
+  0.5,
+  "#050812"
+);
+
+displayGradient.addColorStop(
+  1,
+  "#170b2d"
+);
+
+
+displayContext.fillStyle =
+  displayGradient;
+
+displayContext.fillRect(
+  0,
+  0,
+  1200,
+  800
+);
+
+
+/* blue glow */
+
+const displayGlow =
+  displayContext.createRadialGradient(
+    750,
+    380,
+    20,
+    750,
+    380,
+    500
+  );
+
+displayGlow.addColorStop(
+  0,
+  "rgba(77,125,255,.45)"
+);
+
+displayGlow.addColorStop(
+  1,
+  "rgba(77,125,255,0)"
+);
+
+displayContext.fillStyle =
+  displayGlow;
+
+displayContext.fillRect(
+  0,
+  0,
+  1200,
+  800
+);
+
+
+/* TECHDECOR logo */
+
+displayContext.textAlign =
+  "left";
+
+displayContext.fillStyle =
+  "#ffffff";
+
+displayContext.font =
+  "900 52px Arial";
+
+displayContext.fillText(
+  "TECH",
+  90,
+  130
+);
+
+displayContext.fillStyle =
+  "#82a3ff";
+
+displayContext.fillText(
+  "DECOR",
+  255,
+  130
+);
+
+
+/* headline */
+
+displayContext.fillStyle =
+  "#ffffff";
+
+displayContext.font =
+  "900 78px Arial";
+
+displayContext.fillText(
+  "DESIGN",
+  90,
+  335
+);
+
+displayContext.fillText(
+  "THE FUTURE.",
+  90,
+  415
+);
+
+
+/* small text */
+
+displayContext.fillStyle =
+  "rgba(255,255,255,.45)";
+
+displayContext.font =
+  "600 18px Arial";
+
+displayContext.fillText(
+  "TECHDECOR / QUANTUM WORKSTATION",
+  90,
+  485
+);
+
+
+/* interface cards */
+
+for (
+  let i = 0;
+  i < 3;
+  i++
+) {
+
+  displayContext.fillStyle =
+    "rgba(255,255,255,.07)";
+
+  displayContext.roundRect(
+    90 + i * 205,
+    555,
+    180,
+    90,
+    12
+  );
+
+  displayContext.fill();
+
+}
+
+
+displayContext.fillStyle =
+  "#789aff";
+
+displayContext.font =
+  "700 17px Arial";
+
+displayContext.fillText(
+  "PERFORMANCE",
+  110,
+  590
+);
+
+displayContext.fillText(
+  "PRECISION",
+  315,
+  590
+);
+
+displayContext.fillText(
+  "FUTURE",
+  520,
+  590
+);
+
+
+/* bottom line */
+
+displayContext.fillStyle =
+  "rgba(255,255,255,.25)";
+
+displayContext.font =
+  "600 14px Arial";
+
+displayContext.fillText(
+  "ENGINEERED FOR THE NEXT GENERATION",
+  90,
+  710
+);
+
+
+const displayTexture =
+  new THREE.CanvasTexture(
+    displayCanvas
+  );
+
+displayTexture.colorSpace =
+  THREE.SRGBColorSpace;
+
+
+/* screen glass */
+
+const screen =
+  new THREE.Mesh(
+    new THREE.PlaneGeometry(
+      3.55,
+      2.24
+    ),
+    new THREE.MeshPhysicalMaterial({
+      map: displayTexture,
+      roughness: 0.12,
+      clearcoat: 1,
+      clearcoatRoughness: 0.05
+    })
+  );
+
+screen.position.set(
+  0,
+  0.28,
+  0.025
+);
+
+screen.rotation.x =
+  -0.08;
+
+laptop.add(
+  screen
+);
+
+
+/* =========================================================
+   SCREEN GLOW EDGE
+   ========================================================= */
+
+const screenGlow =
+  new THREE.Mesh(
+    new THREE.BoxGeometry(
+      3.62,
+      0.015,
+      0.015
+    ),
+    blueMaterial
+  );
+
+screenGlow.position.set(
+  0,
+  -0.79,
+  0.04
+);
+
+screenGlow.rotation.x =
+  -0.08;
+
+laptop.add(
+  screenGlow
+);
+
+
+/* =========================================================
+   HINGES
+   ========================================================= */
+
+for (
+  const x of [-1.25, 1.25]
+) {
+
+  const hinge =
+    new THREE.Mesh(
+      new THREE.CylinderGeometry(
+        0.11,
+        0.11,
+        0.42,
+        32
+      ),
+      edgeMetal
+    );
+
+  hinge.rotation.z =
+    Math.PI / 2;
+
+  hinge.position.set(
+    x,
+    -0.96,
+    0.04
+  );
+
+  laptop.add(
+    hinge
   );
 
 }
 
 
-/* Floor */
+/* =========================================================
+   TECHDECOR LOGO ON BASE
+   ========================================================= */
 
-const floor =
+const logo =
   new THREE.Mesh(
-    new THREE.PlaneGeometry(
-      24,
-      24
+    new THREE.CircleGeometry(
+      0.13,
+      48
     ),
-    new THREE.MeshStandardMaterial({
-      color: 0x040508,
-      roughness: 0.55,
-      metalness: 0.25
-    })
+    blueMaterial
   );
 
-floor.rotation.x =
+logo.rotation.x =
   -Math.PI / 2;
 
-floor.position.y =
-  -1.8;
+logo.position.set(
+  0,
+  -0.89,
+  -0.45
+);
 
-scene.add(
-  floor
+laptop.add(
+  logo
 );
 
 
-/* Grid */
+/* =========================================================
+   FLOATING RING
+   ========================================================= */
+
+const ring =
+  new THREE.Mesh(
+    new THREE.TorusGeometry(
+      2.35,
+      0.018,
+      16,
+      100
+    ),
+    new THREE.MeshBasicMaterial({
+      color: 0x6f94ff,
+      transparent: true,
+      opacity: 0.65
+    })
+  );
+
+ring.rotation.x =
+  Math.PI / 2.4;
+
+ring.position.y =
+  -0.10;
+
+scene.add(
+  ring
+);
+
+
+/* =========================================================
+   SECOND RING
+   ========================================================= */
+
+const ring2 =
+  new THREE.Mesh(
+    new THREE.TorusGeometry(
+      2.7,
+      0.012,
+      16,
+      100
+    ),
+    new THREE.MeshBasicMaterial({
+      color: 0x9a51ff,
+      transparent: true,
+      opacity: 0.42
+    })
+  );
+
+ring2.rotation.y =
+  Math.PI / 3;
+
+scene.add(
+  ring2
+);
+
+
+/* =========================================================
+   FLOATING DATA BLOCKS
+   ========================================================= */
+
+const dataBlocks =
+  new THREE.Group();
+
+scene.add(
+  dataBlocks
+);
+
+
+const dataMaterial =
+  new THREE.MeshBasicMaterial({
+    color: 0x6f94ff,
+    transparent: true,
+    opacity: 0.35
+  });
+
+
+for (
+  let i = 0;
+  i < 8;
+  i++
+) {
+
+  const block =
+    new THREE.Mesh(
+      new THREE.BoxGeometry(
+        0.18,
+        0.035,
+        0.11
+      ),
+      dataMaterial
+    );
+
+
+  const angle =
+    i *
+    Math.PI /
+    4;
+
+
+  const radius =
+    2.55 +
+    (i % 2) *
+    0.25;
+
+
+  block.position.set(
+    Math.cos(angle) *
+      radius,
+    Math.sin(
+      angle * 1.6
+    ) * 0.65,
+    Math.sin(angle) *
+      radius
+  );
+
+
+  dataBlocks.add(
+    block
+  );
+
+}
+
+
+/* =========================================================
+   PLATFORM
+   ========================================================= */
+
+const platform =
+  new THREE.Mesh(
+    new THREE.CylinderGeometry(
+      2.0,
+      2.25,
+      0.09,
+      64
+    ),
+    new THREE.MeshPhysicalMaterial({
+      color: 0x0c111a,
+      metalness: 0.85,
+      roughness: 0.2
+    })
+  );
+
+platform.position.y =
+  -2.15;
+
+scene.add(
+  platform
+);
+
+
+/* =========================================================
+   PLATFORM GLOW
+   ========================================================= */
+
+const platformGlow =
+  new THREE.Mesh(
+    new THREE.TorusGeometry(
+      1.72,
+      0.025,
+      16,
+      100
+    ),
+    new THREE.MeshBasicMaterial({
+      color: 0x6f96ff,
+      transparent: true,
+      opacity: 0.8
+    })
+  );
+
+platformGlow.rotation.x =
+  Math.PI / 2;
+
+platformGlow.position.y =
+  -2.08;
+
+scene.add(
+  platformGlow
+);
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
 
 const grid =
   new THREE.GridHelper(
-    22,
-    35,
-    0x1c2f60,
-    0x0c152b
+    18,
+    30,
+    0x182a55,
+    0x0b1427
   );
 
 grid.position.y =
-  -1.79;
+  -2.05;
 
 scene.add(
   grid
 );
 
 
-/* Particles */
+/* =========================================================
+   PARTICLES
+   ========================================================= */
 
-const count =
-  1000;
+const particleCount =
+  650;
 
-const positions =
+
+const particlePositions =
   new Float32Array(
-    count * 3
+    particleCount * 3
   );
 
 
 for (
   let i = 0;
-  i < count;
+  i < particleCount;
   i++
 ) {
 
-  positions[i * 3] =
-    (Math.random() - 0.5) * 14;
+  particlePositions[
+    i * 3
+  ] =
+    (Math.random() - 0.5) *
+    10;
 
-  positions[i * 3 + 1] =
-    (Math.random() - 0.5) * 9;
+  particlePositions[
+    i * 3 + 1
+  ] =
+    (Math.random() - 0.5) *
+    8;
 
-  positions[i * 3 + 2] =
-    (Math.random() - 0.5) * 12;
+  particlePositions[
+    i * 3 + 2
+  ] =
+    (Math.random() - 0.5) *
+    10;
 
 }
 
@@ -1628,10 +2292,11 @@ for (
 const particleGeometry =
   new THREE.BufferGeometry();
 
+
 particleGeometry.setAttribute(
   "position",
   new THREE.BufferAttribute(
-    positions,
+    particlePositions,
     3
   )
 );
@@ -1641,10 +2306,10 @@ const particles =
   new THREE.Points(
     particleGeometry,
     new THREE.PointsMaterial({
-      color: 0x799cff,
-      size: 0.022,
+      color: 0x7598ff,
+      size: 0.018,
       transparent: true,
-      opacity: 0.7
+      opacity: 0.55
     })
   );
 
@@ -1654,10 +2319,15 @@ scene.add(
 );
 
 
-/* Animation */
+/* =========================================================
+   MOUSE
+   ========================================================= */
 
-let mouseX = 0;
-let mouseY = 0;
+let mouseX =
+  0;
+
+let mouseY =
+  0;
 
 
 window.addEventListener(
@@ -1680,84 +2350,105 @@ window.addEventListener(
 );
 
 
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
 const clock =
   new THREE.Clock();
 
 
-function animate() {
+function animateLaptop() {
 
   requestAnimationFrame(
-    animate
+    animateLaptop
   );
+
 
   const time =
     clock.getElapsedTime();
 
 
-  object.rotation.y =
-    time * 0.22 +
-    mouseX * 0.35;
+  /* floating */
 
-
-  object.rotation.x =
+  laptop.position.y =
     Math.sin(
-      time * 0.35
-    ) *
-    0.08;
+      time * 1.25
+    ) * 0.09;
 
 
-  object.position.y =
-    Math.sin(
-      time * 1.4
-    ) *
-    0.12;
+  /* rotation */
+
+  laptop.rotation.y +=
+    (
+      -0.28 +
+      mouseX * 0.22 -
+      laptop.rotation.y
+    ) * 0.025;
 
 
-  inner.scale.setScalar(
-    1 +
-    Math.sin(
-      time * 2
-    ) *
-    0.06
-  );
+  laptop.rotation.x +=
+    (
+      0.045 +
+      mouseY * 0.08 -
+      laptop.rotation.x
+    ) * 0.025;
 
 
-  ring1.rotation.z =
-    time * 0.4;
+  /* rings */
+
+  ring.rotation.z =
+    time * 0.25;
 
   ring2.rotation.x =
-    time * 0.28;
+    time * 0.18;
 
-  ring3.rotation.y =
-    time * 0.35;
-
-
-  cubeGroup.rotation.y =
+  ring2.rotation.z =
     time * 0.12;
 
 
-  particles.rotation.y =
-    time * 0.01;
+  /* data blocks */
 
+  dataBlocks.rotation.y =
+    time * 0.10;
+
+
+  /* particles */
+
+  particles.rotation.y =
+    time * 0.008;
+
+
+  /* glow */
+
+  platformGlow.material.opacity =
+    0.55 +
+    Math.sin(
+      time * 2
+    ) * 0.2;
+
+
+  /* camera movement */
 
   camera.position.x +=
     (
-      mouseX * 0.3 -
+      0.35 +
+      mouseX * 0.22 -
       camera.position.x
-    ) * 0.025;
+    ) * 0.02;
 
 
   camera.position.y +=
     (
-      -mouseY * 0.15 +
-      0.2 -
+      0.35 -
+      mouseY * 0.12 -
       camera.position.y
-    ) * 0.025;
+    ) * 0.02;
 
 
   camera.lookAt(
     0,
-    0,
+    -0.35,
     0
   );
 
@@ -1770,10 +2461,12 @@ function animate() {
 }
 
 
-animate();
+animateLaptop();
 
 
-/* Resize */
+/* =========================================================
+   RESIZE
+   ========================================================= */
 
 window.addEventListener(
   "resize",
@@ -1785,6 +2478,7 @@ window.addEventListener(
     const height =
       container.clientHeight;
 
+
     if (
       width === 0 ||
       height === 0
@@ -1792,10 +2486,12 @@ window.addEventListener(
       return;
     }
 
+
     camera.aspect =
       width / height;
 
     camera.updateProjectionMatrix();
+
 
     renderer.setSize(
       width,
